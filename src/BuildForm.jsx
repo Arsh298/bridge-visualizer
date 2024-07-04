@@ -2,7 +2,7 @@ import { useState } from "react";
 import './Visualizer.css'
 
 export default function BuildForm({ bruteForce,optimal,len,disable }) {
-    const [data, setData] = useState({dis: 5, speed : 9});
+    const [data, setData] = useState({dis: 5, speed : 4});
     
     const handleOptimal = (evt) => {
         evt.preventDefault();
@@ -21,13 +21,13 @@ export default function BuildForm({ bruteForce,optimal,len,disable }) {
 
     return (
         <form style={{marginTop:'10px'}}>
-            <label htmlFor="length">Maximum distance between pillars</label>
+            <label htmlFor="length">Maximum distance between supports</label>
             <input type="number" id="length" value={data.dis} name="dis" min={2} max={len-2} onChange={handleChange}/>
 
             <label htmlFor="speed" style={{marginLeft:"10px"}}>Speed</label>
             <input type="range" id="speed" value={data.speed} name="speed" min="1" max="9" onChange={handleChange}/>
             
-            <button style={{marginTop:"10px"}} disabled={disable} onClick={handleOptimal}>Dynamic Programming</button>
+            <button style={{marginLeft:"10px"}} disabled={disable} onClick={handleOptimal}>Dynamic Programming</button>
             <button style={{marginLeft:"10px"}} disabled={disable} onClick={handleBruteForce}>Brute Force</button>
         </form>
     )

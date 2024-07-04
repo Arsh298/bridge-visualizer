@@ -105,8 +105,8 @@ export default function Visualizer() {
             <GenerateForm generateNew={generateNew} disable={disable}></GenerateForm>
             <div className='sky'>
                 <div className="text" style={{color: (bf.min==-1) ? "skyblue" : "black"}}>
-                    <p>Minimum = {bf.min} <br/>
-                    Current = {bf.curr}</p>
+                    {/* <p>Minimum = {bf.min} <br/> */}
+                    <p>Current = {bf.curr}</p>
                 </div>
                 <div>
                     {dp.map((obj, ind) => (
