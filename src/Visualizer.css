@@ -1,0 +1,34 @@
+.water {
+    display: inline-block;
+    vertical-align: top;
+    width: 15px;
+}
+
+.bridge {
+    background-color: black;
+    width: 100%;
+    vertical-align: bottom;
+    height: 1vh;
+}
+
+.text {
+    background-color: black;
+    color: white;
+    width: 15px;
+    font-size: smaller;
+}
+
+.sky {
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+    height: 20vh;
+    width: auto;
+}
+
+.ground {
+    background-color: darkred;
+    height: 60vh;
+    width: auto;
+}
