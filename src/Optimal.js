@@ -16,21 +16,21 @@ export const Optimal = (river, hd) => {
     
         let ans = j;
         dp[i] = dp[j] + curr;
-        animations.push([i,j,bridge[j],dp[i],dp[j]+curr]);
+        animations.push([i,j,bridge[j],dp[j]+curr,dp[j],[ans,dp[i]]]);
         j++;
-
+        
         while(j<i) {
             if(dp[i] > dp[j]+curr) {
-                dp[i] = dp[j]+curr;
+                dp[i] = dp[j] + curr;
                 ans = j;
             }
-            animations.push([i,j,bridge[j],dp[i],dp[j]+curr]);
+            animations.push([i,j,bridge[j],dp[j]+curr,[ans,dp[i]]]);
             j++;
         }
         
         bridge[i] = [...bridge[ans]];
         bridge[i].push(i);
-        animations.push([bridge[i],i]);
+        animations.push([bridge[i],i, dp[i]]);
     }
     return animations;
 }
@@ -38,4 +38,6 @@ export const Optimal = (river, hd) => {
 // i -> red
 // j -> orange
 // brige[j] -> yellow
-// best , curr
+
+// jth index -> red, dp[j] + curr
+// ans index -> green, dp[ans]

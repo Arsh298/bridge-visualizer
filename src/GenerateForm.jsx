@@ -22,7 +22,7 @@ export default function GenerateForm({ generateNew,disable }) {
             <label htmlFor="maxDepth" style={{marginLeft:"10px"}}>Maximum Depth</label>
             <input type="number" id="maxDepth" value={data.depth} name="depth" min={2} max={30} onChange={handleChange}/>
 
-            <button style={{marginLeft:"10px"}} disabled={disable}>Generate New</button>
+            <button style={{marginLeft:"10px"}} disabled={disable}>Generate</button>
         </form>
     )
 }
