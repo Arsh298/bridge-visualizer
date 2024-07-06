@@ -7,10 +7,10 @@ import './Visualizer.css'
 
 export default function Visualizer() {
 
-    const [river, setRiver] = useState(()=>initialiseRiver(15,10));
-    const [colors, setColors] = useState(()=>initialiseColors(15));
+    const [river, setRiver] = useState(()=>initialiseRiver(10,10));
+    const [colors, setColors] = useState(()=>initialiseColors(10));
     const [disable, setDisable] = useState(false);
-    const [dp, setDp] = useState(initialiseDp(15));
+    const [dp, setDp] = useState(initialiseDp(10));
     const [bf, setBF] = useState({curr: -1, min: -1});
 
     function initialiseRiver(len, depth) {
@@ -43,7 +43,7 @@ export default function Visualizer() {
     function optimal(hd, speed) {
         setDisable(true);
         setBF({curr: -1, min: -1});
-        const animations = Optimal(river, hd);
+        const animations = Optimal(river, parseInt(hd));
         const n = animations.length;
         for(let i = 0; i<n; i++) {
             setTimeout(() => {
@@ -76,12 +76,11 @@ export default function Visualizer() {
     function bruteForce(hd, speed) {
         setDisable(true);
         setDp(initialiseDp(parseInt(river.length)));
-        const [animations,ans] = BruteForce(river, hd);
+        const [animations,ans] = BruteForce(river, parseInt(hd));
         const n = animations.length;
         for(let i = 0; i<n; i++) {
             setTimeout(() => {
                 const newColors = initialiseColors(river.length);
-                console.log(animations[i]);
                 for(let j of animations[i][0]) {
                     newColors[j] = 'red';
                 }   
@@ -95,6 +94,7 @@ export default function Visualizer() {
             for(let j of ans) {
                 newColors[j] = 'green';
             }
+            setBF((old) => {return {...old, curr:old.min}});
             setColors(newColors);
             setDisable(false);
         }, 25*speed*n);
@@ -105,8 +105,8 @@ export default function Visualizer() {
             <GenerateForm generateNew={generateNew} disable={disable}></GenerateForm>
             <div className='sky'>
                 <div className="text" style={{color: (bf.min==-1) ? "skyblue" : "black"}}>
-                    {/* <p>Minimum = {bf.min} <br/> */}
-                    <p>Current = {bf.curr}</p>
+                    <p>Minimum = {bf.min} <br/>
+                    Current = {bf.curr}</p>
                 </div>
                 <div>
                     {dp.map((obj, ind) => (
@@ -121,7 +121,8 @@ export default function Visualizer() {
                         key={ind} 
                         className='water' 
                         style={{
-                            height: `${2*value}vh`, 
+                            // height: `${2*value}vh`, 
+                            height: `${15*value}px`, 
                             backgroundColor: colors[ind]
                         }}>
                     </div>

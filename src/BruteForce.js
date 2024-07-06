@@ -1,8 +1,9 @@
 function recursion(i, river, hd, n, animations, curr, ans) {
-    if(i == n-1)
+    if(i >= n-1)
     {
         if(ans.len > curr.len) {
-            ans = {arr: [...curr.arr], len: curr.len};
+            ans.arr = [...curr.arr];
+            ans.len = curr.len;
         }
         animations.push([[...curr.arr], curr.len, ans.len]);
     } else {
@@ -18,9 +19,10 @@ function recursion(i, river, hd, n, animations, curr, ans) {
 
 export const BruteForce = (river, hd) => {
     const n = river.length;
-    const animations = new Array();
-    const curr = {arr: [], len:0};
-    const ans = {arr: new Array(), len:5000};
+    let animations = new Array();
+    
+    let curr = {arr: new Array(), len:0};
+    let ans = {arr: new Array(), len:5000};
     recursion(0, river, hd, n, animations, curr, ans);
     return [animations, [...ans.arr]];
 }
